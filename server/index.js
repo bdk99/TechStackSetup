@@ -2,15 +2,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const UserModel = require("./models/Users");
-
 const cors = require("cors");
+const {port, db} = require('./config.json');
 
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://group4:TheMealPrEppers!$@cluster0.f0q05.mongodb.net/merntutorial?retryWrites=true&w=majority"
-);
+mongoose.connect(`${db}`);
 
 app.get("/getUsers", (req, res) => {
   UserModel.find({}, (err, result) => {
@@ -30,6 +28,7 @@ app.post("/createUser", async (req, res) => {
   res.json(user);
 });
 
-app.listen(3001, () => {
+app.listen(`${port}`, () => {
   console.log("SERVER RUNS PERFECTLY!");
+  console.log(`Server running on port ${port}`);
 });

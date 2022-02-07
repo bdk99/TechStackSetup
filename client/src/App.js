@@ -1,6 +1,7 @@
 import "./App.css";
 import React,{ useState, useEffect } from "react";
 import Axios from "axios";
+const {getUsers, createUsers} = require('./config.json');
 
 function App() {
   const [listOfUsers, setListOfUsers] = useState([
@@ -11,13 +12,13 @@ function App() {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/getUsers").then((response) => {
+    Axios.get(`${getUsers}`).then((response) => {
       setListOfUsers(response.data);
     });
   }, []);
 
   const createUser = () => {
-    Axios.post("http://localhost:3001/createUser", {
+    Axios.post((`${createUsers}`), {
       name,
       age,
       username,
