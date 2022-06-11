@@ -11,13 +11,13 @@ function App() {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    Axios.get("http://63.250.42.252:3001/getUsers").then((response) => {
+    Axios.get("http://63.250.42.252:3000/getUsers").then((response) => {
       setListOfUsers(response.data);
     });
   }, []);
 
   const createUser = () => {
-    Axios.post("http://63.250.42.252:3001/createUser", {
+    Axios.post("http://63.250.42.252:3000/createUser", {
       name,
       age,
       username,
